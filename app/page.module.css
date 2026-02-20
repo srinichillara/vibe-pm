@@ -1,0 +1,149 @@
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Gradient mesh background */
+.meshBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.meshBackground::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -100px;
+  background: radial-gradient(circle, var(--glow-cyan) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  animation: float 20s ease-in-out infinite;
+}
+
+.meshBackground::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  right: -150px;
+  background: radial-gradient(circle, var(--glow-violet) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  animation: float2 25s ease-in-out infinite;
+}
+
+.meshOrb {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  bottom: -100px;
+  left: 40%;
+  background: radial-gradient(circle, var(--glow-rose) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  animation: float3 22s ease-in-out infinite;
+}
+
+.header {
+  padding: 20px 28px 18px;
+  background: rgba(19, 24, 32, 0.6);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 10;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: -0.5px;
+}
+
+.logoAccent {
+  background: linear-gradient(135deg, var(--glow-cyan), var(--glow-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  padding: 24px 28px;
+  gap: 24px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.boardSection {
+  flex: 7;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.sidebar {
+  flex: 3;
+  min-width: 300px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .boardSection {
+    overflow-x: auto;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .sidebar > * {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .content {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+
+  .sidebar {
+    flex-direction: column;
+  }
+}
