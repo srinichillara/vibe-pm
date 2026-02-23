@@ -105,3 +105,111 @@
   margin-top: 8px;
   opacity: 0.7;
 }
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.priorityBadge {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--priority-color);
+  color: var(--priority-color);
+  background: color-mix(in srgb, var(--priority-color) 12%, transparent);
+  line-height: 1.6;
+}
+
+.dueDateBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 1.6;
+}
+
+.dueDateBadge.overdue {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.expandedMeta {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metaSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.metaLabel {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  min-width: 64px;
+  flex-shrink: 0;
+}
+
+.priorityOptions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.priorityOption {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  padding: 3px 9px;
+  border-radius: 20px;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.6;
+}
+
+.priorityOption:hover {
+  border-color: var(--priority-color);
+  color: var(--priority-color);
+}
+
+.priorityOptionActive {
+  background: color-mix(in srgb, var(--priority-color) 15%, transparent);
+  border-color: var(--priority-color);
+  color: var(--priority-color);
+}
+
+.dueDateInput {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.dueDateInput:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}

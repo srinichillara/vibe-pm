@@ -143,3 +143,44 @@
   background: rgba(26, 34, 48, 0.8);
   box-shadow: none;
 }
+
+.addForm {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.addForm .addInput {
+  border-top: none;
+  border-radius: 0;
+}
+
+.priorityRow {
+  display: flex;
+  gap: 5px;
+  padding: 8px 14px 10px;
+  background: rgba(26, 34, 48, 0.5);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.priorityPill {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  padding: 3px 9px;
+  border-radius: 20px;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.6;
+}
+
+.priorityPill:hover {
+  border-color: var(--priority-color);
+  color: var(--priority-color);
+}
+
+.priorityPillActive {
+  background: color-mix(in srgb, var(--priority-color) 15%, transparent);
+  border-color: var(--priority-color);
+  color: var(--priority-color);
+}
