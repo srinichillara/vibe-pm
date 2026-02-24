@@ -22,9 +22,10 @@ interface TaskRow {
   priority: string | null;
   due_date: string | null;
   created_at: number;
+  user_id: string;
 }
 
-function toRow(task: Task): TaskRow {
+function toRow(task: Task, userId: string): TaskRow {
   return {
     id: task.id,
     title: task.title,
@@ -33,6 +34,7 @@ function toRow(task: Task): TaskRow {
     priority: task.priority ?? null,
     due_date: task.dueDate ?? null,
     created_at: task.createdAt,
+    user_id: userId,
   };
 }
 
@@ -50,7 +52,7 @@ function fromRow(row: TaskRow): Task {
 
 const AppStateContext = createContext<AppStateContextType | null>(null);
 
-export function AppStateProvider({ children }: { children: ReactNode }) {
+export function AppStateProvider({ children, userId }: { children: ReactNode; userId: string }) {
   const [tasks, setTasksState] = useState<Task[]>([]);
   const [todos, setTodos] = useLocalStorage<TodoItem[]>('vibe-pm-todos', []);
   const [notes, setNotes] = useLocalStorage<string>('vibe-pm-notes', '');
@@ -67,7 +69,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         }
         if (data) setTasksState(data.map(fromRow));
       });
-  }, []);
+  }, [userId]);
 
   const setTasks = useCallback((value: Task[] | ((prev: Task[]) => Task[])) => {
     setTasksState(prev => {
@@ -84,7 +86,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       const toDelete = prev.filter(t => !nextMap.has(t.id));
 
       if (toUpsert.length > 0) {
-        supabase.from('tasks').upsert(toUpsert.map(toRow)).then(({ error }) => {
+        supabase.from('tasks').upsert(toUpsert.map(t => toRow(t, userId))).then(({ error }) => {
           if (error) console.error('Error saving tasks:', error);
         });
       }
@@ -97,7 +99,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
 
       return next;
     });
-  }, []);
+  }, [userId]);
 
   return (
     <AppStateContext.Provider value={{ tasks, setTasks, todos, setTodos, notes, setNotes }}>

@@ -1,0 +1,211 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--bg-base);
+}
+
+.meshBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.meshBackground::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -100px;
+  background: radial-gradient(circle, var(--glow-cyan) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  animation: float 20s ease-in-out infinite;
+}
+
+.meshBackground::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  right: -150px;
+  background: radial-gradient(circle, var(--glow-violet) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  animation: float2 25s ease-in-out infinite;
+}
+
+.meshOrb {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  bottom: -100px;
+  left: 40%;
+  background: radial-gradient(circle, var(--glow-rose) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  animation: float3 22s ease-in-out infinite;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 360px;
+  padding: 40px 40px 32px;
+  background: rgba(19, 24, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(24px);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: -0.5px;
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.logoAccent {
+  background: linear-gradient(135deg, var(--glow-cyan), var(--glow-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.input {
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  color: var(--text-bright);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus {
+  border-color: rgba(99, 210, 255, 0.4);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.error {
+  font-size: 13px;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0;
+}
+
+.submitBtn {
+  margin-top: 4px;
+  padding: 10px;
+  background: linear-gradient(135deg, rgba(99, 210, 255, 0.18), rgba(168, 85, 247, 0.18));
+  border: 1px solid rgba(99, 210, 255, 0.25);
+  border-radius: 10px;
+  color: var(--text-bright);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(99, 210, 255, 0.26), rgba(168, 85, 247, 0.26));
+  transform: translateY(-1px);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggle {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 20px 0 0;
+}
+
+.toggleLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--glow-cyan);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.toggleLink:hover {
+  opacity: 0.8;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
